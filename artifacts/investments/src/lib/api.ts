@@ -1,6 +1,3 @@
-const BASE_URL =
-  import.meta.env.VITE_BASE_URL || "";
-
 interface FetchInvestmentsParams {
   IsActive?: boolean;
   Themes?: string;

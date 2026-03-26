@@ -60,15 +60,6 @@ export default function InvestmentList() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Investments</h1>
           <p className="text-muted-foreground">Browse available investment opportunities</p>
-          <p className="text-sm text-muted-foreground mt-1">
-            API Base URL: <span className="font-mono">{import.meta.env.VITE_API_BASE_URL || "Not configured"}</span>
-          </p>
-          <p className="text-sm text-muted-foreground mt-1">
-            Image Container: <span className="font-mono">{import.meta.env.VITE_API_IMAGE_CONTAINER || "Not configured"}</span>
-          </p>
-          <p className="text-sm text-muted-foreground mt-1">
-            Access Token: <span className="font-mono">{import.meta.env.VITE_API_ACCESS_TOKEN ? "••••••••" : "Not configured"}</span>
-          </p>
         </div>
 
 
