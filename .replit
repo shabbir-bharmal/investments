@@ -28,4 +28,3 @@ timeoutMs = 20000
 [userenv]
 
 [userenv.shared]
-VITE_BASE_URL = "https://catacap-qa.azurewebsites.net"

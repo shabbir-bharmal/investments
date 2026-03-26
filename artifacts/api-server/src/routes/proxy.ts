@@ -3,10 +3,10 @@ import { Router, type IRouter } from "express";
 const router: IRouter = Router();
 
 router.get("/Public/get-investments", async (req, res) => {
-  const baseUrl = process.env.VITE_BASE_URL || "";
+  const baseUrl = process.env.API_BASE_URL || "";
 
   if (!baseUrl) {
-    req.log.error("VITE_BASE_URL environment variable is not set");
+    req.log.error("API_BASE_URL environment variable is not set");
     res.status(500).json({ error: "API base URL is not configured" });
     return;
   }
