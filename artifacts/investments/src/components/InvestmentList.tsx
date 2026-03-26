@@ -69,6 +69,9 @@ export default function InvestmentList() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">Investments</h1>
           <p className="text-muted-foreground">Browse available investment opportunities</p>
+          <p className="text-sm text-muted-foreground mt-1">
+            Source: <span className="font-mono">{import.meta.env.VITE_BASE_URL || "Not configured"}</span>
+          </p>
         </div>
 
         <div className="mb-6">
