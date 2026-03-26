@@ -1,6 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
 import { fetchInvestments } from "@/lib/api";
-import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Spinner } from "@/components/ui/spinner";
@@ -9,8 +8,6 @@ export default function InvestmentList() {
   const [investments, setInvestments] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [themeFilter, setThemeFilter] = useState("");
-
   const loadInvestments = useCallback(async (themes: string) => {
     setLoading(true);
     setError(null);
@@ -31,12 +28,6 @@ export default function InvestmentList() {
     loadInvestments("");
   }, [loadInvestments]);
 
-  useEffect(() => {
-    const debounce = setTimeout(() => {
-      loadInvestments(themeFilter);
-    }, 400);
-    return () => clearTimeout(debounce);
-  }, [themeFilter, loadInvestments]);
 
   const getName = (item: any): string =>
     item.name || item.title || item.Name || item.Title || item.investmentName || "Unnamed Investment";
@@ -74,15 +65,6 @@ export default function InvestmentList() {
           </p>
         </div>
 
-        <div className="mb-6">
-          <Input
-            type="search"
-            placeholder="Filter by theme..."
-            value={themeFilter}
-            onChange={(e) => setThemeFilter(e.target.value)}
-            className="max-w-sm"
-          />
-        </div>
 
         {loading && (
           <div className="flex items-center gap-3 justify-center py-20">
