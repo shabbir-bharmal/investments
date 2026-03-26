@@ -50,13 +50,22 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 ## Packages
 
+### `artifacts/investments` (`@workspace/investments`)
+
+React + Vite frontend that displays a list of investments fetched from an external API. Calls the API server's proxy endpoint (`/api/Public/get-investments`) to avoid CORS issues.
+
+- Entry: `src/main.tsx` → `src/App.tsx`
+- Key components: `src/components/InvestmentList.tsx` — fetches and displays investment cards with loading/error/empty states and a theme filter
+- API logic: `src/lib/api.ts` — `fetchInvestments()` function with query param support
+- Uses `VITE_BASE_URL` env var (read by the API server proxy, not the frontend directly)
+
 ### `artifacts/api-server` (`@workspace/api-server`)
 
 Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` for request and response validation and `@workspace/db` for persistence.
 
 - Entry: `src/index.ts` — reads `PORT`, starts Express
 - App setup: `src/app.ts` — mounts CORS, JSON/urlencoded parsing, routes at `/api`
-- Routes: `src/routes/index.ts` mounts sub-routers; `src/routes/health.ts` exposes `GET /health` (full path: `/api/health`)
+- Routes: `src/routes/index.ts` mounts sub-routers; `src/routes/health.ts` exposes `GET /health` (full path: `/api/health`); `src/routes/proxy.ts` proxies `/api/Public/get-investments` to the external API at `VITE_BASE_URL`
 - Depends on: `@workspace/db`, `@workspace/api-zod`
 - `pnpm --filter @workspace/api-server run dev` — run the dev server
 - `pnpm --filter @workspace/api-server run build` — production esbuild bundle (`dist/index.cjs`)
